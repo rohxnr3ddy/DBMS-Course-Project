@@ -1,0 +1,388 @@
+Hostel Accommodation and Student Services Management System
+Database Management Systems (DBMS) Course Project
+Academic Year: 2026–2027
+Course: Database Management Systems (DBMS)
+Section: CSE Rhinos
+University: Woxsen University
+Faculty: [Faculty Name]
+Team Members
+1. Nalla Rohan Reddy — 25WU0101083
+2. Parava Sri Sai Krrish Reddy — 25WU0101092
+Project Description
+The Hostel Accommodation and Student Services Management System is a database-driven web application designed to manage hostel accommodation and student-related services efficiently.
+The system maintains student information, hostel details, room allocation, payments, complaints, and hostel services in a centralized MySQL database.
+The project demonstrates the practical implementation of Database Management System concepts including:
+- Entity Relationship modelling
+- Relational schema design
+- Primary and foreign keys
+- Database constraints
+- Normalization up to 3NF
+- DDL and DML commands
+- SQL queries
+- JOIN operations
+- Aggregate functions
+- CRUD operations
+- Database connectivity
+- Web-based user interface
+Objectives
+The main objectives of the project are:
+1. To maintain student hostel records in a centralized database.
+2. To manage hostel and room information.
+3. To manage student room allocations.
+4. To record hostel fee payments.
+5. To manage student complaints.
+6. To maintain available hostel services.
+7. To provide a user-friendly interface for database operations.
+8. To demonstrate real-time interaction between the web application and MySQL database.
+Scope
+The system covers the following modules:
+- Student Management
+- Hostel Management
+- Room Management
+- Room Allocation
+- Payment Management
+- Complaint Management
+- Hostel Service Management
+The application supports database operations such as:
+- Insert
+- View
+- Update
+- Delete
+- Search
+- JOIN queries
+- Aggregate queries
+Database Design
+The system consists of seven main tables:
+hostelmanagement
+│
+├── student
+├── hostel
+├── room
+├── allocation
+├── payment
+├── complaint
+└── service
+
+Main Relationships
+- One Hostel can have many Rooms.
+- One Student can have multiple Allocations.
+- One Room can have multiple Allocation records.
+- One Student can have multiple Payments.
+- One Student can have multiple Complaints.
+- One Hostel can provide multiple Services.
+ER Diagram
+The complete Entity Relationship Diagram represents:
+- Entities
+- Attributes
+- Primary Keys
+- Foreign Keys
+- Relationships
+- Cardinality
+The ER diagram is included in the project presentation and report.
+Technology Stack
+Frontend
+- HTML5
+- CSS3
+- JavaScript
+Backend
+- Node.js
+- Express.js
+Database
+- MySQL
+Database Connectivity
+- MySQL2 Node.js package
+Development Environment
+- Visual Studio Code
+- MySQL
+- Git
+- GitHub
+Project Structure
+DBMS-Course-Project/
+│
+├── Presentation/
+│   ├── DBMS_Project_Presentation.pdf
+│   ├── ER_Diagram.png
+│   ├── hostelmanagement.sql
+│   ├── screenshots/
+│   └── source-code/
+│
+├── Project-Report/
+│   └── DBMS_Project_Report.pdf
+│
+├── backend/
+│   ├── db.js
+│   └── server.js
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+├── database/
+│   └── hostelmanagement.sql
+│
+├── package.json
+├── package-lock.json
+└── README.md
+
+Database Tables
+1. Student
+Stores student information.
+Fields:
+Student_ID
+Name
+Gender
+Phone
+Email
+Course
+Year
+Department
+
+2. Hostel
+Stores hostel information.
+Fields:
+Hostel_ID
+Hostel_Name
+Location
+Warden_Name
+Capacity
+
+3. Room
+Stores room information.
+Fields:
+Room_ID
+Hostel_ID
+Room_Number
+Room_Type
+Capacity
+Status
+
+4. Allocation
+Stores student room allocation details.
+Fields:
+Allocation_ID
+Student_ID
+Room_ID
+Allocation_Date
+End_Date
+Status
+
+5. Payment
+Stores hostel payment information.
+Fields:
+Payment_ID
+Student_ID
+Amount
+Payment_Date
+Payment_Mode
+Payment_Status
+
+6. Complaint
+Stores student complaints.
+Fields:
+Complaint_ID
+Student_ID
+Complaint_Type
+Description
+Complaint_Date
+Status
+
+7. Service
+Stores hostel services.
+Fields:
+Service_ID
+Hostel_ID
+Service_Name
+Description
+Availability_Status
+
+Database Features
+The database implements:
+- Primary Key constraints
+- Foreign Key constraints
+- NOT NULL constraints
+- UNIQUE constraints
+- Data validation
+- Referential integrity
+The database is normalized up to Third Normal Form (3NF).
+SQL Operations
+The project demonstrates the following SQL operations.
+DDL
+CREATE DATABASE
+CREATE TABLE
+
+DML
+INSERT
+UPDATE
+DELETE
+
+Data Retrieval
+SELECT
+
+JOIN Operations
+The project uses multiple-table JOIN queries to retrieve related student, room, and hostel information.
+Aggregate Functions
+The project demonstrates:
+COUNT()
+SUM()
+AVG()
+GROUP BY
+
+User Interface
+The web application provides a user interface for managing hostel information.
+The interface includes:
+- Dashboard
+- Student Management
+- Hostel Management
+- Room Management
+- Allocation Management
+- Payment Management
+- Complaint Management
+- Service Management
+The Student Management module supports:
+- Adding students
+- Viewing students
+- Deleting students
+Changes made through the UI are reflected in the MySQL database.
+Application Flow
+User
+ │
+ ▼
+Web Interface
+ │
+ ▼
+JavaScript
+ │
+ ▼
+Node.js + Express
+ │
+ ▼
+MySQL Database
+ │
+ ▼
+hostelmanagement
+
+Testing
+The system is tested for:
+- Database connection
+- Table creation
+- Data insertion
+- Data retrieval
+- Data deletion
+- Foreign key integrity
+- JOIN queries
+- Aggregate queries
+- UI-to-database communication
+- Database-to-UI data retrieval
+Sample SQL Queries
+Student, Room and Hostel Details
+SELECT
+    s.Name,
+    r.Room_Number,
+    h.Hostel_Name
+FROM student s
+JOIN allocation a
+    ON s.Student_ID = a.Student_ID
+JOIN room r
+    ON a.Room_ID = r.Room_ID
+JOIN hostel h
+    ON r.Hostel_ID = h.Hostel_ID;
+
+Aggregate Query
+SELECT
+    COUNT(*) AS Total_Students,
+    SUM(Amount) AS Total_Payment,
+    AVG(Amount) AS Average_Payment
+FROM payment;
+
+Available Rooms
+SELECT *
+FROM room
+WHERE Status = 'Available';
+
+Pending Complaints
+SELECT *
+FROM complaint
+WHERE Status = 'Pending';
+
+Hostel-wise Student Count
+SELECT
+    h.Hostel_Name,
+    COUNT(a.Student_ID) AS Total_Students
+FROM hostel h
+JOIN room r
+    ON h.Hostel_ID = r.Hostel_ID
+JOIN allocation a
+    ON r.Room_ID = a.Room_ID
+GROUP BY h.Hostel_ID, h.Hostel_Name;
+
+How to Run the Project
+1. Clone the Repository
+git clone <GITHUB_REPOSITORY_URL>
+
+2. Open the Project
+cd DBMS-Course-Project
+
+3. Install Dependencies
+npm install
+
+4. Create the MySQL Database
+Open MySQL and execute:
+CREATE DATABASE hostelmanagement;
+
+Select the database:
+USE hostelmanagement;
+
+Then execute the SQL file:
+database/hostelmanagement.sql
+
+This creates the required tables and sample records.
+5. Configure MySQL Connection
+Open:
+backend/db.js
+
+Update the MySQL credentials:
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "YOUR_MYSQL_PASSWORD",
+    database: "hostelmanagement",
+    port: 3306
+});
+
+Replace YOUR_MYSQL_PASSWORD with your local MySQL password.
+6. Start the Backend
+Run:
+node backend/server.js
+
+The server will run at:
+http://localhost:3000
+
+7. Open the Application
+Open the frontend in your browser using the configured application route.
+Team Contributions
+Nalla Rohan Reddy — 25WU0101083
+- Database design
+- ER diagram
+- MySQL database creation
+- Table creation and relationships
+- SQL queries
+- Backend and database connectivity
+- Project documentation
+Parava Sri Sai Krrish Reddy — 25WU0101092
+- Frontend development
+- User interface design
+- CRUD interface
+- Testing
+- UI and database integration
+- Project presentation and documentation
+Project Deliverables
+The repository contains:
+- Project Report
+- Presentation
+- ER Diagram
+- SQL Database File
+- Backend Source Code
+- Frontend Source Code
+- UI Screenshots
+- README Documentation
